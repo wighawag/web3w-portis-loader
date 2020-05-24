@@ -1,6 +1,6 @@
 {
   "name": "web3w-portis",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "portis module for web3w",
   "main": "index.js",
   "repository": "git@github.com:wighawag/web3w-portis.git",
