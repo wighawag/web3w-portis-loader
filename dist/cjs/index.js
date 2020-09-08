@@ -157,8 +157,7 @@ class PortisModuleLoader {
                 const integrity = this.jsURLIntegrity;
                 yield loadJS(url, integrity, 'anonymous');
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                Portis = window.require('@portis/web3').default; // TODO test
-                // Portis = (window as any).Portis;
+                Portis = window.Portis;
             }
             return new PortisModule(this.dappId, this.moduleConfig);
         });

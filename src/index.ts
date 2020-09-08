@@ -204,10 +204,8 @@ export class PortisModuleLoader implements Web3WModuleLoader {
       const url = this.jsURL;
       const integrity = this.jsURLIntegrity;
       await loadJS(url, integrity, 'anonymous');
-
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      Portis = (window as any).require('@portis/web3').default; // TODO test
-      // Portis = (window as any).Portis;
+      Portis = (window as any).Portis;
     }
     return new PortisModule(this.dappId, this.moduleConfig);
   }
