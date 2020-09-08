@@ -137,9 +137,14 @@ export class PortisModuleLoader {
     constructor(dappId, config) {
         this.id = 'portis';
         this.dappId = dappId;
-        this.jsURL =
-            (config && config.jsURL) || 'https://cdn.jsdelivr.net/npm/@portis/web3@2.0.0-beta.2.0.0-beta.49/umd/index.js';
-        this.jsURLIntegrity = (config && config.jsURLIntegrity) || 'sha256-eVldFSMA1ifYTEJo1QXYPK7v+V+CNCEP4Xsp5/aAVQ8=';
+        if (config && config.jsURL) {
+            this.jsURL = config.jsURL;
+            this.jsURLIntegrity = config.jsURLIntegrity;
+        }
+        else {
+            this.jsURL = 'https://cdn.jsdelivr.net/npm/@portis/web3@2.0.0-beta.56/umd/index.js';
+            this.jsURLIntegrity = 'sha256-YglsZuKbHpe2+U4HYCd3juAiADRTU7Ys2AGfCGY+Nmo==';
+        }
         this.moduleConfig = config;
     }
     load() {
