@@ -113,7 +113,7 @@ class PortisModule {
                 console.log('PORTIS logout ');
             });
             this.portis.onLogin((walletAddress, email, reputation) => {
-                console.log('PORTIS login: ' + walletAddress + ',' + email);
+                console.log('PORTIS login: ' + walletAddress + ',' + email + ',' + reputation);
             });
             return {
                 web3Provider: this.portis.provider,
