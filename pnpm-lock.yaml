@@ -16,7 +16,7 @@ devDependencies:
   terser: 5.3.0
   terser-folder: 2.0.0
   typescript: 3.9.7
-  web3w: 0.2.13_6293cbae45ead6cecb871b4e8a9b38cc
+  web3w: 0.2.14_6293cbae45ead6cecb871b4e8a9b38cc
 lockfileVersion: 5.1
 packages:
   /@babel/code-frame/7.10.4:
@@ -1851,7 +1851,7 @@ packages:
     dev: true
     resolution:
       integrity: sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew==
-  /web3w/0.2.13_6293cbae45ead6cecb871b4e8a9b38cc:
+  /web3w/0.2.14_6293cbae45ead6cecb871b4e8a9b38cc:
     dependencies:
       '@ethersproject/bignumber': 5.0.6
       '@ethersproject/contracts': 5.0.3
@@ -1863,7 +1863,7 @@ packages:
       '@ethersproject/contracts': ^5.0.0
       '@ethersproject/providers': ^5.0.0
     resolution:
-      integrity: sha512-/5Hbk+okWMxZ7WEBLFNPdcVBPA1LHdAhr146jW+sbu5AYa3ahMMxIQ0HWJndj7IIn0MWguGye0Zb6+68xIIkEw==
+      integrity: sha512-jQ1KzqCPpXR8Ep9qPb2iPBmkJ18WW8odLKGXOtl1TwfwUH7yO5RTjtFr3k6KhPgoJuyu9zm/h7ZsXwbzERLMeA==
   /which/1.3.1:
     dependencies:
       isexe: 2.0.0
@@ -1929,4 +1929,4 @@ specifiers:
   terser: ^5.2.1
   terser-folder: ^2.0.0
   typescript: ^3.8.3
-  web3w: ^0.2.13
+  web3w: ^0.2.14

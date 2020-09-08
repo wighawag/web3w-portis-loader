@@ -131,9 +131,6 @@ class PortisModule implements Web3WModule {
     }
     this.portis = new Portis(this.dappId, network, this.config);
 
-    // TODO remove:
-    (window as any).portis = this.portis;
-
     this.portis.onError((error: unknown) => {
       console.error('PORTIS ERROR:');
       console.error(error);
@@ -147,14 +144,27 @@ class PortisModule implements Web3WModule {
     this.portis.onLogin((walletAddress: string, email: string, reputation: unknown) => {
       console.log('PORTIS login: ' + walletAddress + ',' + email + ',' + reputation);
     });
+
+    // TODO remove:
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).portis = this.portis;
+
     return {
       web3Provider: this.portis.provider,
       chainId,
     };
   }
 
-  async disconnect(): Promise<void> {
+  logout(): Promise<void> {
     return this.portis.logout();
+  }
+
+  disconnect(): void {
+    this.portis = undefined;
+
+    // TODO remove
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).portis = undefined;
   }
 
   isLoggedIn(): Promise<boolean> {

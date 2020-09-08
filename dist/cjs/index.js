@@ -103,8 +103,6 @@ class PortisModule {
                 throw new Error(`chain (${chainId}) not supported by portis`);
             }
             this.portis = new Portis(this.dappId, network, this.config);
-            // TODO remove:
-            window.portis = this.portis;
             this.portis.onError((error) => {
                 console.error('PORTIS ERROR:');
                 console.error(error);
@@ -118,16 +116,23 @@ class PortisModule {
             this.portis.onLogin((walletAddress, email, reputation) => {
                 console.log('PORTIS login: ' + walletAddress + ',' + email + ',' + reputation);
             });
+            // TODO remove:
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            window.portis = this.portis;
             return {
                 web3Provider: this.portis.provider,
                 chainId,
             };
         });
     }
+    logout() {
+        return this.portis.logout();
+    }
     disconnect() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.portis.logout();
-        });
+        this.portis = undefined;
+        // TODO remove
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        window.portis = undefined;
     }
     isLoggedIn() {
         return this.portis.isLoggedIn();
