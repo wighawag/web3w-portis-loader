@@ -2,6 +2,7 @@ import type {Web3WModule, WindowWeb3Provider, Web3WModuleLoader} from 'web3w';
 import {logs} from 'named-logs';
 const console = logs('web3w-portis:index');
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type PortisConfig = any;
 // type PortisConfig = {
 //   scope: string[];
@@ -144,7 +145,7 @@ class PortisModule implements Web3WModule {
       console.log('PORTIS logout ');
     });
     this.portis.onLogin((walletAddress: string, email: string, reputation: unknown) => {
-      console.log('PORTIS login: ' + walletAddress + ',' + email);
+      console.log('PORTIS login: ' + walletAddress + ',' + email + ',' + reputation);
     });
     return {
       web3Provider: this.portis.provider,

@@ -1,1 +1,1 @@
-"# svelte-wallet-portis" 
+"# web3w-portis-loader" 
