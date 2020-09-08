@@ -1,6 +1,6 @@
 {
   "name": "web3w-portis-loader",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "portis module loader for web3w",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -38,7 +38,7 @@
     "terser": "^5.2.1",
     "terser-folder": "^2.0.0",
     "typescript": "^3.8.3",
-    "web3w": "^0.2.11"
+    "web3w": "^0.2.13"
   },
   "scripts": {
     "prepare": "node ./.setup.js && npm run lint && npm run build",

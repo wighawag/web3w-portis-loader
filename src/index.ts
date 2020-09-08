@@ -153,7 +153,7 @@ class PortisModule implements Web3WModule {
     };
   }
 
-  logout(): Promise<void> {
+  async disconnect(): Promise<void> {
     return this.portis.logout();
   }
 

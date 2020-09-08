@@ -124,8 +124,10 @@ class PortisModule {
             };
         });
     }
-    logout() {
-        return this.portis.logout();
+    disconnect() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.portis.logout();
+        });
     }
     isLoggedIn() {
         return this.portis.isLoggedIn();
