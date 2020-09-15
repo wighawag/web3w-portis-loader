@@ -144,22 +144,28 @@ export class PortisModuleLoader {
     constructor(dappId, config) {
         this.id = 'portis';
         this.dappId = dappId;
-        if (config && config.jsURL) {
-            this.jsURL = config.jsURL;
-            this.jsURLIntegrity = config.jsURLIntegrity;
-        }
-        else {
-            this.jsURL = 'https://cdn.jsdelivr.net/npm/@portis/web3@2.0.0-beta.56/umd/index.js';
-            this.jsURLIntegrity = 'sha256-YglsZuKbHpe2+U4HYCd3juAiADRTU7Ys2AGfCGY+Nmo==';
-        }
         this.moduleConfig = config;
+    }
+    static setJsURL(jsURL, jsURLIntegrity) {
+        if (PortisModuleLoader._jsURLUsed) {
+            throw new Error(`cannot change js url once used`);
+        }
+        PortisModuleLoader._jsURL = jsURL;
+        PortisModuleLoader._jsURLIntegrity = jsURLIntegrity;
     }
     load() {
         return __awaiter(this, void 0, void 0, function* () {
             if (!Portis) {
-                const url = this.jsURL;
-                const integrity = this.jsURLIntegrity;
-                yield loadJS(url, integrity, 'anonymous');
+                const url = PortisModuleLoader._jsURL;
+                const integrity = PortisModuleLoader._jsURLIntegrity;
+                PortisModuleLoader._jsURLUsed = true;
+                try {
+                    yield loadJS(url, integrity, 'anonymous');
+                }
+                catch (e) {
+                    PortisModuleLoader._jsURLUsed = false;
+                    throw e;
+                }
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 Portis = window.Portis;
             }
@@ -167,4 +173,7 @@ export class PortisModuleLoader {
         });
     }
 }
+PortisModuleLoader._jsURL = 'https://cdn.jsdelivr.net/npm/@portis/web3@2.0.0-beta.56/umd/index.js';
+PortisModuleLoader._jsURLIntegrity = 'sha256-YglsZuKbHpe2+U4HYCd3juAiADRTU7Ys2AGfCGY+Nmo==';
+PortisModuleLoader._jsURLUsed = false;
 //# sourceMappingURL=index.js.map

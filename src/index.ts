@@ -182,10 +182,19 @@ export class PortisModuleLoader implements Web3WModuleLoader {
   public readonly id: string = 'portis';
   private dappId: string;
 
-  private jsURL: string;
-  private jsURLIntegrity: string | undefined;
+  private static _jsURL = 'https://cdn.jsdelivr.net/npm/@portis/web3@2.0.0-beta.56/umd/index.js';
+  private static _jsURLIntegrity: string | undefined = 'sha256-YglsZuKbHpe2+U4HYCd3juAiADRTU7Ys2AGfCGY+Nmo==';
+  private static _jsURLUsed = false;
 
   private moduleConfig: GeneralConfig | undefined;
+
+  static setJsURL(jsURL: string, jsURLIntegrity?: string): void {
+    if (PortisModuleLoader._jsURLUsed) {
+      throw new Error(`cannot change js url once used`);
+    }
+    PortisModuleLoader._jsURL = jsURL;
+    PortisModuleLoader._jsURLIntegrity = jsURLIntegrity;
+  }
 
   constructor(
     dappId: string,
@@ -194,26 +203,23 @@ export class PortisModuleLoader implements Web3WModuleLoader {
       fallbackUrl?: string;
       chainId?: string;
       config?: PortisConfig;
-      jsURL?: string;
-      jsURLIntegrity?: string;
     }
   ) {
     this.dappId = dappId;
-    if (config && config.jsURL) {
-      this.jsURL = config.jsURL;
-      this.jsURLIntegrity = config.jsURLIntegrity;
-    } else {
-      this.jsURL = 'https://cdn.jsdelivr.net/npm/@portis/web3@2.0.0-beta.56/umd/index.js';
-      this.jsURLIntegrity = 'sha256-YglsZuKbHpe2+U4HYCd3juAiADRTU7Ys2AGfCGY+Nmo==';
-    }
     this.moduleConfig = config;
   }
 
   async load(): Promise<Web3WModule> {
     if (!Portis) {
-      const url = this.jsURL;
-      const integrity = this.jsURLIntegrity;
-      await loadJS(url, integrity, 'anonymous');
+      const url = PortisModuleLoader._jsURL;
+      const integrity = PortisModuleLoader._jsURLIntegrity;
+      PortisModuleLoader._jsURLUsed = true;
+      try {
+        await loadJS(url, integrity, 'anonymous');
+      } catch (e) {
+        PortisModuleLoader._jsURLUsed = false;
+        throw e;
+      }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       Portis = (window as any).Portis;
     }
