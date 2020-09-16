@@ -1,6 +1,6 @@
 {
   "name": "web3w-portis-loader",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "portis module loader for web3w",
   "main": "dist/amd/index.js",
   "module": "dist/esm/index.js",
@@ -49,6 +49,6 @@
     "lint": "eslint src/**/*.{js,ts,tsx} --quiet --fix"
   },
   "dependencies": {
-    "named-logs": "^0.0.6"
+    "named-logs": "^0.0.7"
   }
 }
