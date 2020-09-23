@@ -1,6 +1,6 @@
 {
   "name": "web3w-portis-loader",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "portis module loader for web3w",
   "main": "dist/amd/index.js",
   "module": "dist/esm/index.js",
@@ -43,12 +43,11 @@
     "prepare": "node ./.setup.js && npm run lint && npm run build",
     "dev": "tsc -w -p tsconfig.json",
     "build:esm": "rimraf dist/esm && tsc -p tsconfig.json",
-    "build:cjs": "rimraf dist/cjs && tsc -p tsconfig-cjs.json",
     "build:amd": "rimraf dist/amd && tsc -p tsconfig-amd.json && terser-folder dist/amd -e -x .js -o dist/amd --config-file terser.json",
-    "build": "run-s build:esm build:cjs build:amd",
+    "build": "run-s build:esm build:amd",
     "lint": "eslint src/**/*.{js,ts,tsx} --quiet --fix"
   },
   "dependencies": {
-    "named-logs": "^0.0.7"
+    "named-logs": "0.0.13"
   }
 }
