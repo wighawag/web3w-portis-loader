@@ -1,6 +1,6 @@
 {
   "name": "web3w-portis-loader",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "description": "portis module loader for web3w",
   "main": "dist/amd/index.js",
   "module": "dist/esm/index.js",

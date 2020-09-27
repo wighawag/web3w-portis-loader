@@ -53,19 +53,19 @@ class PortisModule {
     constructor(dappId, config) {
         this.id = 'portis';
         this.dappId = dappId;
-        this.forceFallbackUrl = config && config.forceFallbackUrl;
-        this.fallbackUrl = config && config.fallbackUrl;
+        this.forceNodeUrl = config && config.forceNodeUrl;
+        this.nodeUrl = config && config.nodeUrl;
         this.chainId = config && config.chainId;
         this.config = config;
     }
     setup(config) {
         return __awaiter(this, void 0, void 0, function* () {
             config = config || {};
-            let { chainId, fallbackUrl } = config;
+            let { chainId, nodeUrl } = config;
             chainId = chainId || this.chainId;
-            fallbackUrl = fallbackUrl || this.fallbackUrl;
-            if (fallbackUrl && !chainId) {
-                const response = yield fetch(fallbackUrl, {
+            nodeUrl = nodeUrl || this.nodeUrl;
+            if (nodeUrl && !chainId) {
+                const response = yield fetch(nodeUrl, {
                     headers: {
                         'content-type': 'application/json; charset=UTF-8',
                     },
@@ -85,13 +85,13 @@ class PortisModule {
             }
             const knownNetwork = knownChainIds[chainId];
             let network;
-            if (knownNetwork && !this.forceFallbackUrl) {
+            if (knownNetwork && !this.forceNodeUrl) {
                 network = knownNetwork;
             }
             const chainIdAsNumber = parseInt(chainId);
-            if (!network && fallbackUrl) {
+            if (!network && nodeUrl) {
                 network = {
-                    nodeUrl: fallbackUrl,
+                    nodeUrl: nodeUrl,
                     chainId: chainIdAsNumber,
                 };
                 console.log('PORTIS with ' + network.nodeUrl + ' ' + chainId);

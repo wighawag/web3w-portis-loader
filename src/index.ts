@@ -11,11 +11,11 @@ type PortisConfig = any;
 
 type Config = {
   chainId?: string;
-  fallbackUrl?: string;
+  nodeUrl?: string;
 };
 
 type GeneralConfig = Config & {
-  forceFallbackUrl?: boolean;
+  forceNodeUrl?: boolean;
   config?: PortisConfig;
 };
 
@@ -68,8 +68,8 @@ const knownChainIds: {[chainId: string]: string} = {
 class PortisModule implements Web3WModule {
   public readonly id = 'portis';
   private dappId: string;
-  private forceFallbackUrl: boolean | undefined;
-  private fallbackUrl: string | undefined;
+  private forceNodeUrl: boolean | undefined;
+  private nodeUrl: string | undefined;
   private chainId: string | undefined;
   private config: PortisConfig | undefined;
 
@@ -77,20 +77,20 @@ class PortisModule implements Web3WModule {
 
   constructor(dappId: string, config?: GeneralConfig) {
     this.dappId = dappId;
-    this.forceFallbackUrl = config && config.forceFallbackUrl;
-    this.fallbackUrl = config && config.fallbackUrl;
+    this.forceNodeUrl = config && config.forceNodeUrl;
+    this.nodeUrl = config && config.nodeUrl;
     this.chainId = config && config.chainId;
     this.config = config;
   }
 
   async setup(config?: Config): Promise<{chainId: string; web3Provider: WindowWeb3Provider}> {
     config = config || {};
-    let {chainId, fallbackUrl} = config;
+    let {chainId, nodeUrl} = config;
     chainId = chainId || this.chainId;
-    fallbackUrl = fallbackUrl || this.fallbackUrl;
+    nodeUrl = nodeUrl || this.nodeUrl;
 
-    if (fallbackUrl && !chainId) {
-      const response = await fetch(fallbackUrl, {
+    if (nodeUrl && !chainId) {
+      const response = await fetch(nodeUrl, {
         headers: {
           'content-type': 'application/json; charset=UTF-8',
         },
@@ -113,15 +113,15 @@ class PortisModule implements Web3WModule {
     const knownNetwork = knownChainIds[chainId];
 
     let network: string | undefined | {nodeUrl: string; chainId: number};
-    if (knownNetwork && !this.forceFallbackUrl) {
+    if (knownNetwork && !this.forceNodeUrl) {
       network = knownNetwork;
     }
 
     const chainIdAsNumber = parseInt(chainId);
 
-    if (!network && fallbackUrl) {
+    if (!network && nodeUrl) {
       network = {
-        nodeUrl: fallbackUrl,
+        nodeUrl: nodeUrl,
         chainId: chainIdAsNumber,
       };
       console.log('PORTIS with ' + network.nodeUrl + ' ' + chainId);
@@ -199,8 +199,8 @@ export class PortisModuleLoader implements Web3WModuleLoader {
   constructor(
     dappId: string,
     config?: {
-      forceFallbackUrl?: boolean;
-      fallbackUrl?: string;
+      forceNodeUrl?: boolean;
+      nodeUrl?: string;
       chainId?: string;
       config?: PortisConfig;
     }
