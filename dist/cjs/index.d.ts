@@ -9,8 +9,8 @@ export declare class PortisModuleLoader implements Web3WModuleLoader {
     private moduleConfig;
     static setJsURL(jsURL: string, jsURLIntegrity?: string): void;
     constructor(dappId: string, config?: {
-        forceFallbackUrl?: boolean;
-        fallbackUrl?: string;
+        forceNodeUrl?: boolean;
+        nodeUrl?: string;
         chainId?: string;
         config?: PortisConfig;
     });

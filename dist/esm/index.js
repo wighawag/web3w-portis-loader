@@ -48,6 +48,8 @@ const knownChainIds = {
     '108': 'thundercore',
     // TODO chainId '': 'fuse',
     '163': 'lightstreams',
+    // TODO chainId '': 'maticAlpha',
+    // TODO chainId '': 'maticTestnet' // is that testnet3 ?
 };
 class PortisModule {
     constructor(dappId, config) {
