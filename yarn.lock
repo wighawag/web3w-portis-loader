@@ -1405,6 +1405,11 @@ named-logs@0.0.13:
   resolved "https://registry.yarnpkg.com/named-logs/-/named-logs-0.0.13.tgz#7c2c9c8afad4034aa70ada2e1acbbd33a9f49e70"
   integrity sha512-I5cX7HbnLpQW8VsNu3dAh6g631I1cRsdlN8y/j/NQ4yyKA0Iecp4FZ5a2AYNQbzohMwLTDXW+EW6eeH6wAppSA==
 
+named-logs@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/named-logs/-/named-logs-0.1.0.tgz#9e2aad18ea13edaa2804fd45865880d6651cff40"
+  integrity sha512-BH/I7iUfuL+FR9QmNUT1wUK/JC53qUogrCEv3XGVCHrlQ9hqRrLNakfE5BQbjXPC2A6Kb0whw9BkU+A7nhYKOg==
+
 natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
