@@ -180,6 +180,6 @@ class PortisModuleLoader {
 }
 exports.PortisModuleLoader = PortisModuleLoader;
 PortisModuleLoader._jsURL = 'https://cdn.jsdelivr.net/npm/@portis/web3@4.0.5/umd/index.js';
-PortisModuleLoader._jsURLIntegrity = 'sha256-aM3fufPaYwpd/pxdjTcjd8OpCHh8tfw+sWjhjs5x6I4=';
+PortisModuleLoader._jsURLIntegrity = 'sha256-uDiS2XQ/uXRXnbGu5e6WDDL2T6ShiUQzVyXkYm7l7bI=';
 PortisModuleLoader._jsURLUsed = false;
 //# sourceMappingURL=index.js.map

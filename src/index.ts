@@ -183,7 +183,7 @@ export class PortisModuleLoader implements Web3WModuleLoader {
   private dappId: string;
 
   private static _jsURL = 'https://cdn.jsdelivr.net/npm/@portis/web3@4.0.5/umd/index.js';
-  private static _jsURLIntegrity: string | undefined = 'sha256-aM3fufPaYwpd/pxdjTcjd8OpCHh8tfw+sWjhjs5x6I4=';
+  private static _jsURLIntegrity: string | undefined = 'sha256-uDiS2XQ/uXRXnbGu5e6WDDL2T6ShiUQzVyXkYm7l7bI=';
   private static _jsURLUsed = false;
 
   private moduleConfig: GeneralConfig | undefined;
