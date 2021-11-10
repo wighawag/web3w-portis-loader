@@ -175,7 +175,7 @@ export class PortisModuleLoader {
         });
     }
 }
-PortisModuleLoader._jsURL = 'https://cdn.jsdelivr.net/npm/@portis/web3@2.0.0-beta.56/umd/index.js';
-PortisModuleLoader._jsURLIntegrity = 'sha256-YglsZuKbHpe2+U4HYCd3juAiADRTU7Ys2AGfCGY+Nmo==';
+PortisModuleLoader._jsURL = 'https://cdn.jsdelivr.net/npm/@portis/web3@4.0.5/umd/index.js';
+PortisModuleLoader._jsURLIntegrity = 'sha256-aM3fufPaYwpd/pxdjTcjd8OpCHh8tfw+sWjhjs5x6I4=';
 PortisModuleLoader._jsURLUsed = false;
 //# sourceMappingURL=index.js.map
